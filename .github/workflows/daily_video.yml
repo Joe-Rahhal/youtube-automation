@@ -1,1 +1,30 @@
+name: Daily Video Pipeline
 
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "37 16 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify Python
+        run: python --version
+
+      - name: Run application
+        run: python -m src.main
