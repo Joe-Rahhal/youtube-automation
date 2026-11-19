@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 
 from config.settings import load_settings
 from src.logger import configure_logging, get_logger
+from src.gemini_client import generate_text
 
 
 def main() -> None:
@@ -22,6 +23,14 @@ def main() -> None:
     logger.info("Status: Application started successfully")
     logger.info("Pipeline: Not implemented yet")
     logger.info("=" * 50)
+
+    logger.info("Testing Gemini API connection...")
+
+    result = generate_text(
+        "In one sentence, explain why the night sky is dark."
+    )
+
+    logger.info("Gemini response: %s", result)
 
 
 if __name__ == "__main__":
