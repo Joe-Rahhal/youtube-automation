@@ -4,7 +4,7 @@ import time
 from google import genai
 from google.genai import errors, types
 
-MODEL_NAME = "gemini-3.8-flash"
+MODEL_NAME = "gemini-3.5-flash-lite"
 
 
 def generate_text(prompt: str) -> str:
@@ -36,7 +36,7 @@ def generate_text(prompt: str) -> str:
                 return response.text.strip()
 
             except errors.ServerError as exc:
-                if exc.code != 503 or attempt == 2:
+                if exc.code not in (503, 504) or attempt == 2:
                     raise
 
                 delay = 2 ** (attempt + 1)
