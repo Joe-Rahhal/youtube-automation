@@ -1,4 +1,2 @@
-# No external Python dependencies are needed for the initial milestone.
-
 pytest
 google-genai
