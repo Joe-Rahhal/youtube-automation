@@ -28,3 +28,13 @@ jobs:
 
       - name: Run application
         run: python -m src.main
+
+
+      - name: Install test dependencies
+        run: python -m pip install pytest
+
+      - name: Run tests
+        run: python -m pytest -q
+
+      - name: Run application
+        run: python -m src.main
